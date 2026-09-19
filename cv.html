@@ -25,6 +25,7 @@
     />
   </head>
   <body class="bg-slate-100 text-slate-800 font-sans">
+    <!-- Navigasi utama: identitas visual NexaMind digunakan konsisten. -->
     <nav
       class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md"
     >
@@ -33,8 +34,11 @@
       >
         <a
           href="index.html"
-          class="font-[Outfit] text-xl font-extrabold tracking-tight"
-          >✦ Nexa<span class="text-blue-600">Mind</span
+          class="flex items-center gap-2 font-[Outfit] text-xl font-extrabold tracking-tight"
+          aria-label="NexaMind AI beranda"
+          ><img src="assets/img/logo.svg" alt="" class="h-9 w-9" /> Nexa<span
+            class="text-blue-600"
+            >Mind</span
           ><small class="ml-1 text-xs tracking-widest text-cyan-700"
             >AI</small
           ></a
@@ -59,8 +63,10 @@
       </div>
     </nav>
 
+    <!-- Konten CV digital: profil, pendidikan, pengalaman, keahlian, dan portfolio. -->
     <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
       <div class="grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
+        <!-- Ringkasan profil dan informasi kontak. -->
         <aside
           class="h-fit overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50 lg:sticky lg:top-28"
         >
@@ -110,7 +116,9 @@
               <span class="text-blue-600">in</span>
               <div>
                 <p class="text-xs text-slate-500">LinkedIn</p>
-                <a class="font-semibold hover:text-blue-600" href="#"
+                <a
+                  class="font-semibold hover:text-blue-600"
+                  href="https://www.linkedin.com/in/raka-pratama/"
                   >linkedin.com/in/raka-pratama</a
                 >
               </div>
@@ -119,7 +127,9 @@
               <span class="text-blue-600">◈</span>
               <div>
                 <p class="text-xs text-slate-500">GitHub</p>
-                <a class="font-semibold hover:text-blue-600" href="#"
+                <a
+                  class="font-semibold hover:text-blue-600"
+                  href="https://github.com/rakapratama"
                   >github.com/rakapratama</a
                 >
               </div>
@@ -146,6 +156,7 @@
           </div>
         </aside>
 
+        <!-- Detail CV dan portfolio. -->
         <div class="space-y-6">
           <section
             class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
@@ -373,6 +384,7 @@
         </div>
       </div>
     </main>
+    <!-- Footer halaman CV. -->
     <footer class="border-t border-slate-200 bg-white">
       <div
         class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between"
