@@ -198,3 +198,40 @@ button, input, textarea { font: inherit; }
   .process-grid h3 { margin-top: 34px; }
   .footer-inner { flex-direction: column; align-items: flex-start; padding-block: 24px; }
 }
+/* =========================================================
+   ACCESSIBILITY FIX - WCAG AA
+   Perbaikan kontras warna berdasarkan hasil Axe Core
+   ========================================================= */
+
+/* AI kecil pada background putih */
+small {
+    color: #0e7490;
+}
+
+/* AI yang menggunakan Bootstrap text-info */
+.text-info {
+    color: #0e7490 !important;
+}
+
+/* AI pada brand/logo */
+.brand small,
+.navbar-brand small {
+    color: #0e7490 !important;
+}
+
+/* Eyebrow pada background gelap */
+.eyebrow {
+    color: #93c5fd !important;
+}
+
+/* Jika eyebrow berada di section/hero gelap */
+.bg-dark .eyebrow,
+.section-dark .eyebrow,
+.hero-dark .eyebrow {
+    color: #93c5fd !important;
+}
+
+/* Cyan Tailwind yang sebelumnya terlalu terang */
+.text-cyan-500 {
+    color: #0e7490 !important;
+}
