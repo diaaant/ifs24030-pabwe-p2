@@ -1,119 +1,391 @@
 <!doctype html>
 <html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Blog NexaMind AI — insight tentang generative AI, RAG, etika AI, dan otomasi."
-  <title>Blog AI — NexaMind</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <style>
-    :root{--nm-blue:#2563eb;--nm-dark:#0f172a;--nm-soft:#eff6ff}
-    body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f8fafc;color:#1e293b}
-    .brand{font-weight:800;letter-spacing:-.04em}.brand span{color:var(--nm-blue)}
-    .hero-blog{background:linear-gradient(135deg,#eff6ff,#fff 55%,#ecfeff);padding:5.5rem 0 4.5rem}
-    .eyebrow{color:var(--nm-blue);font-size:.75rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
-    .blog-title{font-weight:800;letter-spacing:-.05em;font-size:clamp(2.7rem,6vw,4.8rem);line-height:.98}
-    .card{border:1px solid #1f60b4;border-radius:1rem;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
-    .card:hover{transform:translateY(-6px);box-shadow:0 1rem 2.5rem rgba(15,23,42,.1)}
-    .cover{height:220px;object-fit:cover}
-    .badge-soft{background:var(--nm-soft);color:var(--nm-blue)}
-    .meta{color:#64748b;font-size:.88rem}.meta i{color:var(--nm-blue)}
-    .filter .btn{border-radius:999px}.filter .btn.active{background:var(--nm-blue);border-color:var(--nm-blue)}
-    .footer{background:var(--nm-dark);color:#94a3b8}.footer a{color:#cbd5e1;text-decoration:none}.footer a:hover{color:#fff}
-  </style>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-  <div class="container py-2">
-    <a class="navbar-brand brand" href="index.html"><span>✦</span> Nexa<span>Mind</span> <small class="text-info">AI</small></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Buka navigasi"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Landing</a></li>
-        <li class="nav-item"><a class="nav-link active fw-semibold" href="blog.html"><i class="bi bi-journal-text me-1"></i>Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="cv.html"><i class="bi bi-person-badge me-1"></i>CV</a></li>
-        <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary rounded-pill px-4" href="index.html#kontak">Konsultasi</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header class="hero-blog">
-  <div class="container">
-    <p class="eyebrow mb-3">NexaMind Intelligence Journal</p>
-    <h1 class="blog-title mb-4">Insight AI untuk<br><span class="text-primary">keputusan yang lebih baik.</span></h1>
-    <p class="lead text-secondary col-lg-7 mb-0">Bacaan singkat tentang teknologi AI, strategi implementasi, dan cara memanfaatkannya secara bertanggung jawab.</p>
-  </div>
-</header>
-
-<main class="py-5">
-  <div class="container">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-      <div><h2 class="h3 fw-bold mb-1">Artikel terbaru</h2><p class="text-secondary mb-0">Pilih topik yang ingin kamu eksplorasi.</p></div>
-      <div class="filter btn-group flex-wrap" role="group" aria-label="Filter kategori">
-        <button class="btn btn-primary active" type="button">Semua</button>
-        <button class="btn btn-outline-primary" type="button">Generative AI</button>
-        <button class="btn btn-outline-primary" type="button">ML</button>
-        <button class="btn btn-outline-primary" type="button">Etika AI</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Blog NexaMind AI — insight tentang generative AI, RAG, etika AI, dan otomasi."
+    />
+    <title>Blog AI — NexaMind</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --nm-blue: #0b5ed7;
+        --nm-dark: #0b1220;
+        --nm-soft: #eff6ff;
+        --nm-cyan: #0e7490;
+        --nm-secondary: #5f6b7a;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        background: #f8fafc;
+        color: #172033;
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .brand span {
+        color: var(--nm-blue);
+      }
+      .brand small.text-info {
+        color: var(--nm-cyan) !important;
+      }
+      .hero-blog {
+        background: linear-gradient(135deg, #eff6ff, #fff 55%, #ecfeff);
+        padding: 5.5rem 0 4.5rem;
+      }
+      .eyebrow {
+        color: var(--nm-blue);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .blog-title {
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        font-size: clamp(2.7rem, 6vw, 4.8rem);
+        line-height: 0.98;
+      }
+      .blog-title .text-primary {
+        color: var(--nm-blue) !important;
+      }
+      .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.1);
+      }
+      .cover {
+        height: 220px;
+        object-fit: cover;
+      }
+      .badge-soft {
+        background: var(--nm-soft);
+        color: #084298;
+      }
+      .meta {
+        color: #64748b;
+        font-size: 0.88rem;
+      }
+      .meta i {
+        color: var(--nm-blue);
+      }
+      .filter .btn {
+        border-radius: 999px;
+      }
+      .filter .btn.active {
+        background: var(--nm-blue);
+        border-color: var(--nm-blue);
+      }
+      .filter .btn-outline-primary {
+        color: var(--nm-blue);
+        border-color: var(--nm-blue);
+      }
+      .text-secondary {
+        color: var(--nm-secondary) !important;
+      }
+      .text-primary {
+        color: var(--nm-blue) !important;
+      }
+      .bg-primary-subtle.text-primary {
+        color: #084298 !important;
+      }
+      .footer {
+        background: var(--nm-dark);
+        color: #94a3b8;
+      }
+      .footer a {
+        color: #cbd5e1;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+      <div class="container py-2">
+        <a class="navbar-brand brand" href="index.html"
+          ><span>✦</span> Nexa<span>Mind</span>
+          <small class="text-info">AI</small></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Buka navigasi"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="bi bi-house me-1"></i>Landing</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-semibold" href="blog.html"
+                ><i class="bi bi-journal-text me-1"></i>Blog</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cv.html"
+                ><i class="bi bi-person-badge me-1"></i>CV</a
+              >
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a
+                class="btn btn-primary rounded-pill px-4"
+                href="index.html#kontak"
+                >Konsultasi</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
 
-    <div class="row g-4">
-      <article class="col-md-6 col-xl-3">
-        <div class="card h-100 bg-white">
-          <img src="assets/img/blog-generative.svg" class="cover w-100" alt="Ilustrasi generative AI">
-          <div class="card-body p-4 d-flex flex-column">
-            <span class="badge badge-soft rounded-pill align-self-start mb-3"><i class="bi bi-stars me-1"></i>Generative AI</span>
-            <h3 class="h5 fw-bold"><a class="text-decoration-none text-dark" href="blog-detail.html">Memahami Generative AI Tanpa Istilah Rumit</a></h3>
-            <p class="text-secondary small">Gambaran sederhana tentang cara model generatif menghasilkan teks, gambar, dan ide baru.</p>
-            <div class="meta mt-auto pt-3 border-top"><i class="bi bi-person me-1"></i>yobezz · <i class="bi bi-calendar3 ms-2 me-1"></i>12 Sep 2026</div>
-            <a href="blog-detail.html" class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-      <article class="col-md-6 col-xl-3">
-        <div class="card h-100 bg-white">
-          <img src="assets/img/blog-rag.svg" class="cover w-100" alt="Ilustrasi RAG dan knowledge base">
-          <div class="card-body p-4 d-flex flex-column">
-            <span class="badge badge-soft rounded-pill align-self-start mb-3"><i class="bi bi-database me-1"></i>RAG</span>
-            <h3 class="h5 fw-bold"><a class="text-decoration-none text-dark" href="blog-detail.html">Mengapa RAG Membuat Chatbot Lebih Relevan?</a></h3>
-            <p class="text-secondary small">Mengenal Retrieval-Augmented Generation dan perannya saat AI perlu menjawab dari sumber tertentu.</p>
-            <div class="meta mt-auto pt-3 border-top"><i class="bi bi-person me-1"></i>Yohana · <i class="bi bi-calendar3 ms-2 me-1"></i>9 Sep 2026</div>
-            <a href="blog-detail.html" class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-      <article class="col-md-6 col-xl-3">
-        <div class="card h-100 bg-white">
-          <img src="assets/img/blog-ethics.svg" class="cover w-100" alt="Ilustrasi etika AI">
-          <div class="card-body p-4 d-flex flex-column">
-            <span class="badge badge-soft rounded-pill align-self-start mb-3"><i class="bi bi-shield-check me-1"></i>Etika AI</span>
-            <h3 class="h5 fw-bold"><a class="text-decoration-none text-dark" href="blog-detail.html">Responsible AI: Lebih dari Sekadar Akurasi</a></h3>
-            <p class="text-secondary small">Mengapa privasi, keamanan, transparansi, dan human oversight perlu dirancang sejak awal.</p>
-            <div class="meta mt-auto pt-3 border-top"><i class="bi bi-person me-1"></i>keysia · <i class="bi bi-calendar3 ms-2 me-1"></i>5 Sep 2026</div>
-            <a href="blog-detail.html" class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-      <article class="col-md-6 col-xl-3">
-        <div class="card h-100 bg-white">
-          <img src="assets/img/blog-automation.svg" class="cover w-100" alt="Ilustrasi otomasi AI">
-          <div class="card-body p-4 d-flex flex-column">
-            <span class="badge badge-soft rounded-pill align-self-start mb-3"><i class="bi bi-robot me-1"></i>Automation</span>
-            <h3 class="h5 fw-bold"><a class="text-decoration-none text-dark" href="blog-detail.html">Memulai Otomasi AI dari Proses Kecil</a></h3>
-            <p class="text-secondary small">Langkah memilih proses yang tepat untuk diotomatisasi tanpa membuat transformasi menjadi terlalu kompleks.</p>
-            <div class="meta mt-auto pt-3 border-top"><i class="bi bi-person me-1"></i>dian · <i class="bi bi-calendar3 ms-2 me-1"></i>1 Sep 2026</div>
-            <a href="blog-detail.html" class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none">Baca selengkapnya <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </article>
-    </div>
+    <header class="hero-blog">
+      <div class="container">
+        <p class="eyebrow mb-3">NexaMind Intelligence Journal</p>
+        <h1 class="blog-title mb-4">
+          Insight AI untuk<br /><span class="text-primary"
+            >keputusan yang lebih baik.</span
+          >
+        </h1>
+        <p class="lead text-secondary col-lg-7 mb-0">
+          Bacaan singkat tentang teknologi AI, strategi implementasi, dan cara
+          memanfaatkannya secara bertanggung jawab.
+        </p>
+      </div>
+    </header>
 
-    <nav class="mt-5" aria-label="Navigasi halaman blog"><ul class="pagination justify-content-center"><li class="page-item active"><a class="page-link" href="#">1</a></li><li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">3</a></li><li class="page-item"><a class="page-link" href="#" aria-label="Berikutnya"><i class="bi bi-chevron-right"></i></a></li></ul></nav>
-  </div>
-</main>
-<footer class="footer py-4"><div class="container d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center"><div><strong class="text-white">✦ NexaMind AI</strong><div class="small mt-1">Intelligence, built for people.</div></div><div class="d-flex gap-3"><a href="index.html">Landing</a><a href="blog.html">Blog</a><a href="cv.html">CV</a></div><div class="small">© 2026 NexaMind AI</div></div></footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <main class="py-5">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4"
+        >
+          <div>
+            <h2 class="h3 fw-bold mb-1">Artikel terbaru</h2>
+            <p class="text-secondary mb-0">
+              Pilih topik yang ingin kamu eksplorasi.
+            </p>
+          </div>
+          <div
+            class="filter btn-group flex-wrap"
+            role="group"
+            aria-label="Filter kategori"
+          >
+            <button class="btn btn-primary active" type="button">Semua</button>
+            <button class="btn btn-outline-primary" type="button">
+              Generative AI
+            </button>
+            <button class="btn btn-outline-primary" type="button">ML</button>
+            <button class="btn btn-outline-primary" type="button">
+              Etika AI
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <article class="col-md-6 col-xl-3">
+            <div class="card h-100 bg-white">
+              <img
+                src="assets/img/blog-generative.svg"
+                class="cover w-100"
+                alt="Ilustrasi generative AI"
+              />
+              <div class="card-body p-4 d-flex flex-column">
+                <span
+                  class="badge badge-soft rounded-pill align-self-start mb-3"
+                  ><i class="bi bi-stars me-1"></i>Generative AI</span
+                >
+                <h3 class="h5 fw-bold">
+                  <a
+                    class="text-decoration-none text-dark"
+                    href="blog-detail.html"
+                    >Memahami Generative AI Tanpa Istilah Rumit</a
+                  >
+                </h3>
+                <p class="text-secondary small">
+                  Gambaran sederhana tentang cara model generatif menghasilkan
+                  teks, gambar, dan ide baru.
+                </p>
+                <div class="meta mt-auto pt-3 border-top">
+                  <i class="bi bi-person me-1"></i>Raka Pratama ·
+                  <i class="bi bi-calendar3 ms-2 me-1"></i>12 Sep 2026
+                </div>
+                <a
+                  href="blog-detail.html"
+                  class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none"
+                  >Baca selengkapnya <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6 col-xl-3">
+            <div class="card h-100 bg-white">
+              <img
+                src="assets/img/blog-rag.svg"
+                class="cover w-100"
+                alt="Ilustrasi RAG dan knowledge base"
+              />
+              <div class="card-body p-4 d-flex flex-column">
+                <span
+                  class="badge badge-soft rounded-pill align-self-start mb-3"
+                  ><i class="bi bi-database me-1"></i>RAG</span
+                >
+                <h3 class="h5 fw-bold">
+                  <a
+                    class="text-decoration-none text-dark"
+                    href="blog-detail.html"
+                    >Mengapa RAG Membuat Chatbot Lebih Relevan?</a
+                  >
+                </h3>
+                <p class="text-secondary small">
+                  Mengenal Retrieval-Augmented Generation dan perannya saat AI
+                  perlu menjawab dari sumber tertentu.
+                </p>
+                <div class="meta mt-auto pt-3 border-top">
+                  <i class="bi bi-person me-1"></i>Raka Pratama ·
+                  <i class="bi bi-calendar3 ms-2 me-1"></i>9 Sep 2026
+                </div>
+                <a
+                  href="blog-detail.html"
+                  class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none"
+                  >Baca selengkapnya <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6 col-xl-3">
+            <div class="card h-100 bg-white">
+              <img
+                src="assets/img/blog-ethics.svg"
+                class="cover w-100"
+                alt="Ilustrasi etika AI"
+              />
+              <div class="card-body p-4 d-flex flex-column">
+                <span
+                  class="badge badge-soft rounded-pill align-self-start mb-3"
+                  ><i class="bi bi-shield-check me-1"></i>Etika AI</span
+                >
+                <h3 class="h5 fw-bold">
+                  <a
+                    class="text-decoration-none text-dark"
+                    href="blog-detail.html"
+                    >Responsible AI: Lebih dari Sekadar Akurasi</a
+                  >
+                </h3>
+                <p class="text-secondary small">
+                  Mengapa privasi, keamanan, transparansi, dan human oversight
+                  perlu dirancang sejak awal.
+                </p>
+                <div class="meta mt-auto pt-3 border-top">
+                  <i class="bi bi-person me-1"></i>Nadia Putri ·
+                  <i class="bi bi-calendar3 ms-2 me-1"></i>5 Sep 2026
+                </div>
+                <a
+                  href="blog-detail.html"
+                  class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none"
+                  >Baca selengkapnya <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6 col-xl-3">
+            <div class="card h-100 bg-white">
+              <img
+                src="assets/img/blog-automation.svg"
+                class="cover w-100"
+                alt="Ilustrasi otomasi AI"
+              />
+              <div class="card-body p-4 d-flex flex-column">
+                <span
+                  class="badge badge-soft rounded-pill align-self-start mb-3"
+                  ><i class="bi bi-robot me-1"></i>Automation</span
+                >
+                <h3 class="h5 fw-bold">
+                  <a
+                    class="text-decoration-none text-dark"
+                    href="blog-detail.html"
+                    >Memulai Otomasi AI dari Proses Kecil</a
+                  >
+                </h3>
+                <p class="text-secondary small">
+                  Langkah memilih proses yang tepat untuk diotomatisasi tanpa
+                  membuat transformasi menjadi terlalu kompleks.
+                </p>
+                <div class="meta mt-auto pt-3 border-top">
+                  <i class="bi bi-person me-1"></i>Fajar Mahendra ·
+                  <i class="bi bi-calendar3 ms-2 me-1"></i>1 Sep 2026
+                </div>
+                <a
+                  href="blog-detail.html"
+                  class="btn btn-sm btn-link text-primary text-start px-0 mt-2 text-decoration-none"
+                  >Baca selengkapnya <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <nav class="mt-5" aria-label="Navigasi halaman blog">
+          <ul class="pagination justify-content-center">
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Berikutnya"
+                ><i class="bi bi-chevron-right"></i
+              ></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+    <footer class="footer py-4">
+      <div
+        class="container d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center"
+      >
+        <div>
+          <strong class="text-white">✦ NexaMind AI</strong>
+          <div class="small mt-1">Intelligence, built for people.</div>
+        </div>
+        <div class="d-flex gap-3">
+          <a href="index.html">Landing</a><a href="blog.html">Blog</a
+          ><a href="cv.html">CV</a>
+        </div>
+        <div class="small">© 2026 NexaMind AI</div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

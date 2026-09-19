@@ -17,6 +17,11 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
     <style>
+      :root {
+        --nm-blue: #0b5ed7;
+        --nm-cyan: #0e7490;
+        --nm-secondary: #5f6b7a;
+      }
       body {
         font-family:
           system-ui,
@@ -31,7 +36,10 @@
         letter-spacing: -0.04em;
       }
       .brand span {
-        color: #2563eb;
+        color: var(--nm-blue);
+      }
+      .brand small.text-info {
+        color: var(--nm-cyan) !important;
       }
       .article-wrap {
         max-width: 850px;
@@ -43,7 +51,7 @@
         border-radius: 1.2rem;
       }
       .eyebrow {
-        color: #2563eb;
+        color: var(--nm-blue);
         font-size: 0.75rem;
         font-weight: 800;
         letter-spacing: 0.13em;
@@ -93,6 +101,15 @@
         color: #cbd5e1;
         text-decoration: none;
       }
+      .text-primary {
+        color: var(--nm-blue) !important;
+      }
+      .text-secondary {
+        color: var(--nm-secondary) !important;
+      }
+      .bg-primary-subtle.text-primary {
+        color: #084298 !important;
+      }
     </style>
   </head>
   <body>
@@ -103,8 +120,12 @@
           <small class="text-info">AI</small></a
         ><button
           class="navbar-toggler"
+          type="button"
           data-bs-toggle="collapse"
           data-bs-target="#nav"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="Buka navigasi"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -142,8 +163,8 @@
         </h1>
         <div class="d-flex flex-wrap gap-3 text-secondary small mb-4">
           <span
-            ><i class="bi bi-person-circle me-1 text-primary"></i>Dian Rafael
-            Tambunan</span
+            ><i class="bi bi-person-circle me-1 text-primary"></i>Raka
+            Pratama</span
           ><span><i class="bi bi-clock me-1 text-primary"></i>6 menit baca</span
           ><span
             ><i class="bi bi-tag me-1 text-primary"></i>Artificial
